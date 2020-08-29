@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <title>Cash Properties</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h1 class="panel-title"
+                        th:text="${cash.value==null} ? 'Create Cash' : 'Edit Cash'"></h1>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <form method="POST" th:action="@{/service/cash/save}">
+                            <table class="table">
+                                <tr>
+                                    <td><label for="name">Name</label></td>
+                                    <td><input type="text" name="name" id="name" th:value="${cash.name}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="value">Value (cents)</label></td>
+                                    <td><input type="number" name="value" id="value" th:value="${cash.value}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><label for="count">Count</label></td>
+                                    <td><input type="number" name="count" id="count" th:value="${cash.count}"/></td>
+                                </tr>
+                                <tr>
+                                    <td><a th:href="@{/service}"
+                                           class="btn btn-secondary btn-sm active" role="button" aria-pressed="true">Back</a>
+                                    </td>
+                                    <td align="right"><button type="submit" class="btn btn-primary">Save</button></td>
+                                </tr>
+                            </table>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

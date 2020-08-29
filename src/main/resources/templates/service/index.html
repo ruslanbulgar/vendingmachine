@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <title>Service</title>
+</head>
+<body>
+<div class="container-fluid" style="margin-top: 20px">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-primary">
+
+                <div class="panel-heading">
+                    <h1 class="panel-title">Service Interface</h1>
+                </div>
+                <div class="panel-body">
+                    <p style="text-align:center;">Products</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <td>Code</td>
+                                <td>Name</td>
+                                <td>Price</td>
+                                <td>Max Units</td>
+                                <td>Stock</td>
+                                <td align="right"><a th:href="@{/service/product/new}">New</a></td>
+                            </tr>
+                            <tr th:each="product : ${products}">
+                                <td th:text="${product.code}"></td>
+                                <td th:text="${product.name}"></td>
+                                <td>
+                                    $<tt th:text="${product.price}/100"></tt>
+                                </td>
+                                <td th:text="${product.maxProducts}"></td>
+                                <td><a  th:text="${product.products.size()}" th:href="@{/service/product/stock(code=${product.code})}"></a></td>
+
+                                <td align="right">
+                                    <a th:href="@{/service/product/edit(code=${product.code})}">Edit</a>
+                                    <a th:href="@{/service/product/remove(code=${product.code})}">Remove</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <p style="text-align:center;">Accepted Cash</p>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr>
+                                <td>Name</td>
+                                <td>Price</td>
+                                <td>Count</td>
+                                <td align="right"><a th:href="@{/service/cash/new}">New</a></td>
+                            </tr>
+                            <tr th:each="cash : ${cashes}">
+                                <td th:text="${cash.name}"></td>
+                                <td>
+                                    $<tt th:text="${cash.value}/100"></tt>
+                                </td>
+                                <td th:text="${cash.count}"></td>
+                                <td align="right">
+                                    <a th:href="@{/service/cash/edit(value=${cash.value})}">Edit</a>
+                                    <a th:href="@{/service/cash/remove(value=${cash.value})}">Remove</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
